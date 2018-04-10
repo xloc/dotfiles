@@ -104,4 +104,6 @@ source $ZSH_PLUGIN_PATH/zsh-autosuggestions/zsh-autosuggestions.zsh
 # zsh-syntax-highlighting
 source $ZSH_PLUGIN_PATH/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# set default text editor
+export EDITOR="vim"
 # export GOPATH=/usr/local/gopath
