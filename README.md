@@ -4,3 +4,4 @@
 - `git submodule init`
 - `git submodule update`
 - `./deploy`
+- optional ``chsh -s `which zsh` ``
