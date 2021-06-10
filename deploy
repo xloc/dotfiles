@@ -1,6 +1,15 @@
-mv ~/.zshrc ~/.zshrc.old
-mv ~/.tmux.conf ~/.tmux.conf.old
-mv ~/.vimrc ~/.vimrc.old
+if [ -f "~/.zshrc" ]; then
+	echo "~/.zshrc exist. backup to ~/.zshrc.old"
+	mv ~/.zshrc ~/.zshrc.old
+fi
+if [ -f "~/.tmux.conf" ]; then
+	echo "~/.tmux.conf exist. backup to ~/.tmux.conf.old"
+	mv ~/.tmux.conf ~/.tmux.conf.old
+fi
+if [ -f "~/.vimrc" ]; then
+	echo "~/.vimrc exist. backup to ~/.vimrc.old"
+	mv ~/.vimrc ~/.vimrc.old
+fi
 
 printf "source '$HOME/dotfiles/zsh/zshrc.sh'" > ~/.zshrc
 printf "so $HOME/dotfiles/vim/vimrc.vim" > ~/.vimrc
