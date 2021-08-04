@@ -14,3 +14,11 @@ fi
 printf "source '$HOME/dotfiles/zsh/zshrc.sh'" > ~/.zshrc
 printf "so $HOME/dotfiles/vim/vimrc.vim" > ~/.vimrc
 printf "source-file $HOME/dotfiles/tmux/tmux.conf" > ~/.tmux.conf
+
+# fish/fisher config
+mkdir -p ~/.config
+if [ -d ~/.config/fish ] then
+	echo "~/.config/fish exist. backup to ~/.config/fish-old"
+	mv ~/.config/fish ~/.config/fish-old
+fi
+ln -s ~/dotfiles/fish ~/.config/
