@@ -17,7 +17,7 @@ printf "source-file $HOME/dotfiles/tmux/tmux.conf" > ~/.tmux.conf
 
 # fish/fisher config
 mkdir -p ~/.config
-if [ -d ~/.config/fish ] then
+if [ -d ~/.config/fish ]; then
 	echo "~/.config/fish exist. backup to ~/.config/fish-old"
 	mv ~/.config/fish ~/.config/fish-old
 fi
