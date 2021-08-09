@@ -1,0 +1,61 @@
+#!/usr/bin/env python3
+
+import click
+import os
+
+PDU_HOSTNAME = '172.18.25.170'
+CYCLE_DELAY = 1500
+
+def pdu_set_command(outlet,on):
+	return f'curl -u admin:1234 http://{PDU_HOSTNAME}/outlet?{outlet}={"ON" if on else "OFF"} >/dev/null 2>&1'
+
+@click.group()
+def cli():
+	# click.echo("Nothing")
+	pass
+
+
+@cli.command()
+@click.argument('outlet')
+def d(outlet):
+	cmd = pdu_set_command(outlet, False)
+	click.echo(cmd)
+	os.system(cmd)
+
+
+@cli.command()
+@click.argument('outlet')
+def e(outlet):
+	cmd = pdu_set_command(outlet, True)
+	click.echo(cmd)
+	os.system(cmd)
+
+
+@cli.command()
+@click.option('--delay', default=1.5, help="Time delay between off and on in seconds")
+@click.argument('outlet')
+def c(delay, outlet):
+	cmd = pdu_set_command(outlet, False)
+	click.echo(cmd)
+	os.system(cmd)
+
+	click.echo(f"sleep {delay}s")
+	os.system(f"sleep {delay}")
+
+	cmd = pdu_set_command(outlet, True)
+	click.echo(cmd)
+	os.system(cmd)
+
+
+
+def main():
+	cmd = pdu_set_command(1, True)
+	click.echo(cmd)
+	cmd = pdu_set_command(1, False)
+	click.echo(cmd)
+	# os.command()
+	
+
+
+if __name__ == "__main__":
+	cli()
