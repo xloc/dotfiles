@@ -1,3 +1,5 @@
+#!/bin/bash
+
 if [ -f "~/.zshrc" ]; then
 	echo "~/.zshrc exist. backup to ~/.zshrc.old"
 	mv ~/.zshrc ~/.zshrc.old
