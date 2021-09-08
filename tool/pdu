@@ -42,6 +42,7 @@ def cli():
 @cli.command()
 @click.argument('outlet')
 def d(outlet):
+	"""disable an outlet"""
 	cmd = pdu_set_command(outlet, False)
 	click.echo(cmd)
 	os.system(cmd)
@@ -51,6 +52,7 @@ def d(outlet):
 @cli.command()
 @click.argument('outlet')
 def e(outlet):
+	"""enable an outlet"""
 	cmd = pdu_set_command(outlet, True)
 	click.echo(cmd)
 	os.system(cmd)
@@ -61,6 +63,7 @@ def e(outlet):
 @click.option('--delay', default=1.5, help="Time delay between off and on in seconds")
 @click.argument('outlet')
 def c(delay, outlet):
+	"""cycle an outlet (turn outlet on then off)"""
 	cmd = pdu_set_command(outlet, False)
 	click.echo(cmd)
 	os.system(cmd)
@@ -76,6 +79,7 @@ def c(delay, outlet):
 
 @cli.command()
 def s():
+	"""show outlet status"""
 	echo_status()
 
 def main():
