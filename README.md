@@ -1,10 +1,9 @@
 # How to use
 
-- install zsh/tmux/vim
-- `git submodule init`
-- `git submodule update`
+- install fish/tmux/vim
 - `./deploy`
-- optional ``chsh -s `which zsh` ``
+- optional ``chsh -s `which fish` ``
+- (for macOS may need to modify /etc/shells)
 
 # By the way
 ## github configuration
@@ -15,3 +14,4 @@
   - might need `ssh-add ~/.ssh/id_rsa`
 - `git config --global user.name "<user-name>"`
 - `git config --global user.email "<email>"`
+
