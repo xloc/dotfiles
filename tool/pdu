@@ -2,12 +2,36 @@
 
 import click
 import os
+import subprocess
+import re
 
 PDU_HOSTNAME = '172.18.25.170'
 CYCLE_DELAY = 1500
+LOGIN = 'admin:admin'
 
 def pdu_set_command(outlet,on):
-	return f'curl -u admin:1234 http://{PDU_HOSTNAME}/outlet?{outlet}={"ON" if on else "OFF"} >/dev/null 2>&1'
+	return f'curl -u {LOGIN} http://{PDU_HOSTNAME}/outlet?{outlet}={"ON" if on else "OFF"} >/dev/null 2>&1'
+
+def pdu_status():
+	result = subprocess.run(
+		['/usr/bin/curl', '-u', LOGIN, f'http://{PDU_HOSTNAME}/status'],
+		stdout=subprocess.PIPE,
+		stderr=subprocess.DEVNULL,
+	)
+	status_string = result.stdout.decode('utf-8')
+	result = re.search(r'<div id="state">(\d{2})</div>', status_string)
+	result = int(result[1], base=16)
+	result = ['*' if i == '1' else '-' for i in f'{result:08b}']
+	result = ''.join(result[::-1])
+	return result
+
+def echo_status():
+	result = pdu_status()
+	click.secho('1-4: ', nl=False)
+	click.secho(result[0:4], nl=False, fg='red')
+	click.secho('  5-8: ', nl=False)
+	click.secho(result[4:8], nl=False, fg='red')
+	click.echo()
 
 @click.group()
 def cli():
@@ -21,6 +45,7 @@ def d(outlet):
 	cmd = pdu_set_command(outlet, False)
 	click.echo(cmd)
 	os.system(cmd)
+	echo_status()
 
 
 @cli.command()
@@ -29,6 +54,7 @@ def e(outlet):
 	cmd = pdu_set_command(outlet, True)
 	click.echo(cmd)
 	os.system(cmd)
+	echo_status()
 
 
 @cli.command()
@@ -46,7 +72,11 @@ def c(delay, outlet):
 	click.echo(cmd)
 	os.system(cmd)
 
+	echo_status()
 
+@cli.command()
+def s():
+	echo_status()
 
 def main():
 	cmd = pdu_set_command(1, True)
