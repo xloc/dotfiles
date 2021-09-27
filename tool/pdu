@@ -10,7 +10,7 @@ CYCLE_DELAY = 1500
 LOGIN = 'admin:admin'
 
 def pdu_set_command(outlet,on):
-	return f'curl -u {LOGIN} http://{PDU_HOSTNAME}/outlet?{outlet}={"ON" if on else "OFF"} >/dev/null 2>&1'
+	return f'curl -u {LOGIN} http://{PDU_HOSTNAME}/outlet?{outlet}={"ON" if on else "OFF"}'
 
 def pdu_status():
 	result = subprocess.run(
@@ -35,7 +35,6 @@ def echo_status():
 
 @click.group()
 def cli():
-	# click.echo("Nothing")
 	pass
 
 
@@ -45,7 +44,7 @@ def d(outlet):
 	"""disable an outlet"""
 	cmd = pdu_set_command(outlet, False)
 	click.echo(cmd)
-	os.system(cmd)
+	os.system(f'{cmd} >/dev/null 2>&1')
 	echo_status()
 
 
@@ -55,7 +54,7 @@ def e(outlet):
 	"""enable an outlet"""
 	cmd = pdu_set_command(outlet, True)
 	click.echo(cmd)
-	os.system(cmd)
+	os.system(f'{cmd} >/dev/null 2>&1')
 	echo_status()
 
 
@@ -66,14 +65,14 @@ def c(delay, outlet):
 	"""cycle an outlet (turn outlet on then off)"""
 	cmd = pdu_set_command(outlet, False)
 	click.echo(cmd)
-	os.system(cmd)
+	os.system(f'{cmd} >/dev/null 2>&1')
 
 	click.echo(f"sleep {delay}s")
 	os.system(f"sleep {delay}")
 
 	cmd = pdu_set_command(outlet, True)
 	click.echo(cmd)
-	os.system(cmd)
+	os.system(f'{cmd} >/dev/null 2>&1')
 
 	echo_status()
 
