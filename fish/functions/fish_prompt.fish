@@ -17,7 +17,22 @@ function fish_prompt --description 'Write out the prompt'
             set color_cwd $fish_color_cwd
             set suffix '>'
     end
-	
+
+	# mode character
+	set -l mode ''
+    switch $fish_bind_mode
+        case default
+			set mode 'n'
+        case insert
+			set mode ''
+        case replace_one
+			set mode 'r'
+        case visual
+			set mode 'v'
+        case '*'
+			set mode '?'
+    end
+
 	set -l prompt_status (__fish_print_pipestatus "[" "]" "|" (set_color $fish_color_status) (set_color --bold $fish_color_status) $last_pipestatus)
 
     echo -n -s \
@@ -25,5 +40,6 @@ function fish_prompt --description 'Write out the prompt'
 		(set_color $color_cwd) (prompt_pwd) \
 		(set_color $fish_color_quote) (fish_vcs_prompt) ' '\
 		$prompt_status \
-        (set_color normal) "$suffix "
+        (set_color normal) "$mode$suffix "
+	true
 end
