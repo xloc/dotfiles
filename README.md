@@ -24,6 +24,6 @@ sudo apt-get install fish
 
 ## prepend fish path
  ```bash
- set -U fish_user_paths /opt/homebrew/bin $fish_user_paths:
+ set -U fish_user_paths /opt/homebrew/bin $fish_user_paths
  ```
 
