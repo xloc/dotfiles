@@ -23,7 +23,12 @@ sudo apt-get install fish
 ```
 
 ## prepend fish path
- ```bash
- set -U fish_user_paths /opt/homebrew/bin $fish_user_paths
- ```
+```bash
+set -U fish_user_paths /opt/homebrew/bin $fish_user_paths
+```
 
+## install autojump
+```bash
+# install curl
+fisher install jethrokuan/z
+```
