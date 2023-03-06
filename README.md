@@ -27,8 +27,9 @@ sudo apt-get install fish
 set -U fish_user_paths /opt/homebrew/bin $fish_user_paths
 ```
 
-## install autojump
+## fisher tools
 ```bash
 # install curl
 fisher install jethrokuan/z
+fisher install edc/bass
 ```
