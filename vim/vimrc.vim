@@ -16,8 +16,9 @@ set hlsearch
 " Quick navigation
 nnoremap H 0
 nnoremap L $
-nnoremap J G
-nnoremap K gg
+
+nnoremap <M-k> <C-y>
+nnoremap <M-j> <C-e>
 
 
 " Return to the line you left off at
