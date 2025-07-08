@@ -9,7 +9,7 @@
 ## setup git
 - `sudo apt install git`
 - add ssh key
-  - `ssh-keygen -t rsa -b 4096 -C "tj-xzx@126.com"`
+  - `ssh-keygen -t ed25519 -C "<email>"`
   - add generated key in github setting page (copy&paste)
   - might need `ssh-add ~/.ssh/id_rsa`
 - `git config --global user.name "<user-name>"`
