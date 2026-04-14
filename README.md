@@ -37,7 +37,7 @@ fisher install edc/bass
 ## git aliases
 ```bash
 git config --global alias.co checkout
-git config --global alias.logg log --oneline --graph
-git config --global alias.bn rev-parse --abbrev-ref HEAD
-git config --global alias.logt log --pretty=format:"%C(yellow)%h %C(cyan)%cd %Cblue%<(8,trunc)%aE%C(auto)%d %Creset%s" --date=format:"%m-%d/%H:%M"
+git config --global alias.logg 'log --oneline --graph'
+git config --global alias.bn 'rev-parse --abbrev-ref HEAD'
+git config --global alias.logt 'log --pretty=format:"%C(yellow)%h %C(cyan)%cd %Cblue%<(8,trunc)%aE%C(auto)%d %Creset%s" --date=format:"%m-%d/%H:%M"'
 ```
